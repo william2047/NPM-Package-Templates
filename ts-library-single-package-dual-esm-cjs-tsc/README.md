@@ -9,6 +9,8 @@ A single-package TypeScript library template compiled with the TypeScript compil
 
 This template deliberately does not bundle. Application bundlers such as Vite, Rollup, webpack, and esbuild can consume its ESM output like any other npm dependency. Keeping dependencies external also avoids silently shipping duplicate copies of them inside the library.
 
+Compiler configurations and build helpers live under `.build/` to keep the package root uncluttered.
+
 ## Start a package
 
 1. Change `name`, `description`, `author`, `license`, and repository metadata in `package.json`.

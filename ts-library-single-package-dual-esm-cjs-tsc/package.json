@@ -24,11 +24,11 @@
     "dist"
   ],
   "scripts": {
-    "clean": "node scripts/clean.mjs",
-    "build": "npm run clean && tsc -p tsconfig.esm.json && tsc -p tsconfig.cjs.json && node scripts/write-module-packages.mjs",
-    "dev": "tsc -p tsconfig.esm.json --watch",
-    "check": "tsc -p tsconfig.esm.json --noEmit",
-    "test:package": "npm run build && node test/package/import.mjs && node test/package/require.cjs && node --conditions=browser test/package/browser.mjs",
+    "clean": "node .build/clean.mjs",
+    "build": "npm run clean && tsc -p .build/tsconfig.esm.json && tsc -p .build/tsconfig.cjs.json && node .build/write-module-packages.mjs",
+    "dev": "tsc -p .build/tsconfig.esm.json --watch",
+    "check": "tsc -p .build/tsconfig.json",
+    "test:package": "npm run build && node .build/test/import.mjs && node .build/test/require.cjs && node --conditions=browser .build/test/browser.mjs",
     "prepublishOnly": "npm run test:package"
   },
   "keywords": [],
