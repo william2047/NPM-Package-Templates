@@ -1,0 +1,43 @@
+{
+  "name": "package-name",
+  "version": "1.0.0",
+  "description": "A browser- and Node-compatible TypeScript library.",
+  "type": "commonjs",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/types/esm/index.d.ts",
+  "exports": {
+    ".": {
+      "browser": "./dist/esm/index.js",
+      "import": {
+        "types": "./dist/types/esm/index.d.ts",
+        "default": "./dist/esm/index.js"
+      },
+      "require": {
+        "types": "./dist/types/cjs/index.d.ts",
+        "default": "./dist/cjs/index.js"
+      },
+      "default": "./dist/esm/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "clean": "node scripts/clean.mjs",
+    "build": "npm run clean && tsc -p tsconfig.esm.json && tsc -p tsconfig.cjs.json && node scripts/write-module-packages.mjs",
+    "dev": "tsc -p tsconfig.esm.json --watch",
+    "check": "tsc -p tsconfig.esm.json --noEmit",
+    "test:package": "npm run build && node test/package/import.mjs && node test/package/require.cjs && node --conditions=browser test/package/browser.mjs",
+    "prepublishOnly": "npm run test:package"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "engines": {
+    "node": ">=18"
+  },
+  "devDependencies": {
+    "typescript": "^6.0.3"
+  }
+}
